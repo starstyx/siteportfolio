@@ -1,15 +1,19 @@
-import { Provider as StyletronProvider } from 'styletron-react';
-import { LightTheme, BaseProvider } from 'baseui';
-import { styletron } from '../infra/styletron';
+import { ChakraProvider } from '@chakra-ui/react';
+import { Container } from '@chakra-ui/react';
+
+import { Header } from '../components/header';
+
+import { HEADER_HEIGHT } from '../infra/constants/header';
 
 import type { AppProps } from 'next/app';
 
 export default function App({ Component, pageProps, ...rest }: AppProps) {
   return (
-    <StyletronProvider value={styletron}>
-      <BaseProvider theme={LightTheme}>
+    <ChakraProvider>
+      <Header />
+      <Container maxW="container.lg" mt={HEADER_HEIGHT}>
         <Component {...pageProps} />
-      </BaseProvider>
-    </StyletronProvider>
+      </Container>
+    </ChakraProvider>
   );
 };
