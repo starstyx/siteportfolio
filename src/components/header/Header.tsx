@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import { Box } from '@chakra-ui/react';
+import { Box, Container, Heading } from '@chakra-ui/react';
 
-import { HEADER_HEIGHT } from '../../infra/constants/header';
+import { HEADER_HEIGHT, HEADER_TITLE } from '@/infra/constants/header';
 
 const Header = () => {
   return (
@@ -17,7 +17,11 @@ const Header = () => {
       left={0}
       right={0}
       zIndex={100}
-    />
+    >
+      <Container maxW="container.xl">
+        <Heading>{HEADER_TITLE}</Heading>
+      </Container>
+    </Box>
   ); 
 };
 
