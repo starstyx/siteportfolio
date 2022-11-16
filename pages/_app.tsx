@@ -1,9 +1,8 @@
-import { ChakraProvider } from '@chakra-ui/react';
-import { Container } from '@chakra-ui/react';
+import { ChakraProvider, Container } from '@chakra-ui/react';
 
-import { Header } from '../components/header';
+import { Header } from '@/components/header';
 
-import { HEADER_HEIGHT } from '../infra/constants/header';
+import { HEADER_HEIGHT, HEADER_MARGIN } from '@/infra/constants/header';
 
 import type { AppProps } from 'next/app';
 
@@ -11,7 +10,7 @@ export default function App({ Component, pageProps, ...rest }: AppProps) {
   return (
     <ChakraProvider>
       <Header />
-      <Container maxW="container.lg" mt={HEADER_HEIGHT}>
+      <Container maxW="container.xl" mt={HEADER_HEIGHT+HEADER_MARGIN}>
         <Component {...pageProps} />
       </Container>
     </ChakraProvider>

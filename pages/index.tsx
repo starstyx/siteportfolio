@@ -3,13 +3,11 @@ import { useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 
-import { Card, CardHeader, CardBody, CardFooter } from '@chakra-ui/react'
-import { Button } from '@chakra-ui/react';
-import { Text } from '@chakra-ui/react';
+import { Button, Text, Card, CardHeader, CardBody, CardFooter } from '@chakra-ui/react'
 
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
-import { auth } from '../infra/firebase/clientApp';
+import { auth } from '@/infra/firebase/clientApp';
 
 const dummyArr = new Array(100);
 
