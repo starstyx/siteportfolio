@@ -5,6 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:export": "next build && next export",
+    "serve": "serve ./out",
+    "serve:latest": "npm run build:export && serve ./out",
     "start": "next start",
     "lint": "next lint"
   },
@@ -25,5 +28,8 @@
     "react-dom": "18.2.0",
     "react-firebase-hooks": "^5.1.0",
     "typescript": "4.8.4"
+  },
+  "devDependencies": {
+    "serve": "^14.1.2"
   }
 }
