@@ -1,10 +1,25 @@
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 import { Box, Container, Heading, ButtonGroup, Button, Flex, Spacer } from '@chakra-ui/react';
+import { useColorMode } from '@chakra-ui/react';
 
 import { HEADER_HEIGHT, HEADER_TITLE } from '@/infra/constants/header';
 
-const Header = () => {
+import type { PageNavItem } from '@/infra/types/pageNavItem';
+
+type HeaderProps = {
+  pages: PageNavItem[];
+};
+
+const Header = ({ pages }: HeaderProps) => {
+  const { toggleColorMode } = useColorMode();
+  const { pathname } = useRouter();
+
+  const currentPageBaseUrl = `/${pathname.split('/')[1]}`;
+  const currentPage = pages.find(page => page.baseUrl === currentPageBaseUrl);
+
   return (
     <Box
       as="header"
@@ -20,12 +35,16 @@ const Header = () => {
     >
       <Container maxW="container.xl" h="100%">
         <Flex align="center" h="100%">
-          <Heading>{HEADER_TITLE}</Heading>
+          <Link href="/">
+            <Heading>{HEADER_TITLE}</Heading>
+          </Link>
           <Spacer />
-          <ButtonGroup variant="outline" colorScheme="blackAlpha">
-            <Button>Home</Button>
-            <Button variant="ghost">Portfolio</Button>
-            <Button variant="ghost">Contact</Button>
+          <ButtonGroup variant="ghost" colorScheme="blackAlpha">
+            {pages.map(page =>
+              <Link key={page.baseUrl} href={page.baseUrl}>
+                <Button variant={page.baseUrl === currentPageBaseUrl ? 'solid' : ''}>{page.name}</Button>
+              </Link>
+            )}
           </ButtonGroup>
         </Flex>
       </Container>
