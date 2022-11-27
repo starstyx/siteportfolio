@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { Box, Container, Heading, ButtonGroup, Button, Flex, Spacer } from '@chakra-ui/react';
 import { useColorMode } from '@chakra-ui/react';
 
+import { UserAuthenticationButton } from './userAuthenticationButton';
+
 import { HEADER_HEIGHT, HEADER_TITLE } from '@/infra/constants/header';
 
 import type { PageNavItem } from '@/infra/types/pageNavItem';
@@ -39,13 +41,23 @@ const Header = ({ pages }: HeaderProps) => {
             <Heading>{HEADER_TITLE}</Heading>
           </Link>
           <Spacer />
-          <ButtonGroup variant="ghost" colorScheme="blackAlpha">
+          <ButtonGroup variant="ghost" colorScheme="blue">
             {pages.map(page =>
               <Link key={page.baseUrl} href={page.baseUrl}>
-                <Button variant={page.baseUrl === currentPageBaseUrl ? 'solid' : ''}>{page.name}</Button>
+                <Button
+                  {
+                    ...(page.baseUrl === currentPageBaseUrl 
+                      ? { variant: 'solid' } 
+                      : {}
+                    )
+                  }
+                >
+                  {page.name}
+                </Button>
               </Link>
             )}
           </ButtonGroup>
+          <UserAuthenticationButton />
         </Flex>
       </Container>
     </Box>
