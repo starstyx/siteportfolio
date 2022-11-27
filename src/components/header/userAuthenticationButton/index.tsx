@@ -1,0 +1,1 @@
+export { UserAuthenticationButton } from './UserAuthenticationButton';
